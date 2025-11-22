@@ -1,35 +1,40 @@
 # 🚀 End-to-End LLMOps Project  
 LLM-powered application built with **Groq**, **Tavily**, **FastAPI**, **Streamlit**, **Docker**, **Jenkins**, **SonarQube**, and **AWS (ECR + Fargate)**.
 
-This project demonstrates complete **LLMOps workflow**, including model integration, backend + frontend development, containerization, CI/CD automation, code quality checks, and cloud deployment.
+This project demonstrates a complete **LLMOps workflow**, including model integration, backend + frontend development, containerization, CI/CD automation, code quality checks, and cloud deployment.
 
 ---
 
 ## 📌 Features
+
 ### **LLM Application**
 - Integrated **Groq LLM API** for high-speed inference  
 - Integrated **Tavily Search API** for real-time retrieval  
-- Core business logic modularized in `/core`  
+- Core business logic modularized inside `/core`  
 
 ### **Backend**
 - Built with **FastAPI**
 - Well-structured API routing
-- Easy to scale and deploy using containers
+- Scalable and container-friendly architecture
 
 ### **Frontend**
-- Developed using **Streamlit**
-- Clean and interactive UI
-- Connects directly to FastAPI backend
+- Built using **Streamlit**
+- Clean, interactive UI
+- Communicates with FastAPI backend via REST
 
 ---
 
 ## 🏗️ Project Architecture
 
+```
+
+Streamlit UI → FastAPI Backend → Groq LLM API
+↓
+Tavily Search API
+
+````
 
 ---
-Streamlit UI → FastAPI Backend → LLM (Groq API)
-↓
-Tavily Search
 
 ## 🐳 Docker Support
 The entire application (backend + frontend) is containerized.
@@ -37,61 +42,87 @@ The entire application (backend + frontend) is containerized.
 ### **Build Image**
 ```bash
 docker build -t llm-app .
+````
 
-Run Container
+### **Run Container**
 
+```bash
 docker run -p 8000:8000 llm-app
----
+```
 
 ---
 
 ## 🔁 CI/CD with Jenkins
 
-Configured a full automation pipeline:
+A full automation pipeline is configured using **Jenkins**:
 
-GitHub → Jenkins Webhook Trigger
+* **GitHub → Jenkins Webhook Trigger**
+* **SonarQube Quality Gate**
+* **Docker Image Build**
+* **Push to AWS ECR**
+* **Deploy to AWS Fargate**
 
-SonarQube Quality Gate
+### **Pipeline Stages**
 
-Docker Image Build
-
-Push to AWS ECR
-
-Deploy to AWS Fargate
+1. Checkout code
+2. Run SonarQube code analysis
+3. Build Docker image
+4. Push image to AWS ECR
+5. Deploy container to AWS Fargate
 
 ---
 
-Pipeline stages include:
+## ☁️ Deployment on AWS
 
-Checkout
+* Docker image stored in **AWS ECR**
+* Application deployed via **AWS Fargate**
+* Serverless, scalable, secure environment
 
-Code scan (SonarQube)
+---
 
-Build Docker image
+## 📁 Folder Structure
 
-Push to ECR
+```
+├── core/                # Core business logic
+├── api/                 # FastAPI routes & backend logic
+├── frontend/            # Streamlit UI
+├── config/              # Env & configuration files
+├── Dockerfile
+├── requirements.txt
+└── README.md
+```
 
-Deploy to AWS
+---
 
-☁️ Deployment on AWS
+## 🔑 Environment Variables
 
-Container hosted on AWS ECR
+Create a `.env` file in the project root:
 
-Fully managed deployment using AWS Fargate
+```
+GROQ_API_KEY=your_key_here
+TAVILY_API_KEY=your_key_here
+```
 
-Auto-scaling, secure, pay-per-use
+---
 
-🔑 Environment Variables
+## 🚀 Run Locally
 
-Create a .env file:
+### **Step 1: Install dependencies**
 
-🚀 Run Locally
-
-Step 1: Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-Step 2: Start FastAPI
+### **Step 2: Start FastAPI backend**
+
+```bash
 uvicorn api.main:app --reload
+```
 
-Step 3: Start Streamlit
+### **Step 3: Start Streamlit frontend**
+
+```bash
 streamlit run frontend/app.py
+```
+
+---
