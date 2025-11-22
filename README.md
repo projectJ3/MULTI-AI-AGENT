@@ -1,4 +1,4 @@
-# 🚀 End-to-End LLMOps Project  
+# 🚀 End-to-End LLMOps Project to Deploy Multi AI Agent
 LLM-powered application built with **Groq**, **Tavily**, **FastAPI**, **Streamlit**, **Docker**, **Jenkins**, **SonarQube**, and **AWS (ECR + Fargate)**.
 
 This project demonstrates a complete **LLMOps workflow**, including model integration, backend + frontend development, containerization, CI/CD automation, code quality checks, and cloud deployment.
