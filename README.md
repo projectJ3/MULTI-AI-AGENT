@@ -41,8 +41,11 @@ docker build -t llm-app .
 Run Container
 
 docker run -p 8000:8000 llm-app
+---
 
-🔁 CI/CD with Jenkins
+---
+
+## 🔁 CI/CD with Jenkins
 
 Configured a full automation pipeline:
 
@@ -55,6 +58,8 @@ Docker Image Build
 Push to AWS ECR
 
 Deploy to AWS Fargate
+
+---
 
 Pipeline stages include:
 
